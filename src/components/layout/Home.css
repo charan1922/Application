@@ -1,0 +1,26 @@
+html,
+body {
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#root {
+  height: 100%;
+}
+
+.wrapper {
+  height: 100%;
+
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+}
+
+.header {
+  min-height: 56px;
+}
