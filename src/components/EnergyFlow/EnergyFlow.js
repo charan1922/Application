@@ -47,13 +47,14 @@ class EnergyFlow extends React.Component {
       }
       this.setState({
         // batteryVoltage: result.Items[0].btime
+
         Battery_Power: Math.round(235 + Math.random() * (230 - 240)),
         BatteryIpv: Math.round(13 + Math.random() * (5 - 15)),
         BatteryVpv: Math.round(40 + Math.random() * (30 - 45)),
         BMS_Charge: Math.round(230 + Math.random() * (225 - 250)),
         BMS_Discharge: Math.round(250 + Math.random() * (200 - 280)),
-        DateTime: Date.now(),
-        Grid_Power: Math.round(1500 + Math.random() * (1100 - 1900)),
+        DateTime: new Date().getTime() * 10000,
+        Grid_Power: Math.round(Math.random() * 1080),
         GridIpv: Math.round(220 + Math.random() * (202 - 243)),
         GridVpv: Math.round(250 + Math.random() * (200 - 295)),
         Inverter_Temperature: Math.round(15 + Math.random() * (10 - 30)),
@@ -109,69 +110,73 @@ class EnergyFlow extends React.Component {
 
     return (
       <div>
-        <ul class='circle-container'>
+        <ul className='circle-container'>
           <li>
             <Link
               to={{
-                pathname: '/Chart',
-                state: { data: 'Solar Production' }
-              }}>
-              <img src={require('../assets/images/solar-house.png')} />
+                pathname: '/Load',
+                state: { data: 'Load Production', type: 'load' }
+              }}
+              className={Solar_Power == 0 ? 'disabled-link' : ''}>
+              <img src={require('../../assets/images/solar-house.png')} />
             </Link>
           </li>
           <li>
             <Link
               to={{
-                pathname: '/Chart',
-                state: { data: 'Battey Production' }
-              }}>
-              <img src={require('../assets/images/battery4.png')} />
+                pathname: '/Battey',
+                state: { data: 'Battey Production', type: 'battery' }
+              }}
+              className={Battery_Power == 0 ? 'disabled-link' : ''}>
+              <img src={require('../../assets/images/battery4.png')} />
             </Link>
           </li>
           <li>
             <Link
               to={{
-                pathname: '/Chart',
-                state: { data: 'Tower Production' }
-              }}>
-              <img src={require('../assets/images/tower.png')} />
+                pathname: '/Grid',
+                state: { data: 'Grid Production', type: 'Grid' }
+              }}
+              className={Load_Power == 0 ? 'disabled-link' : ''}>
+              <img src={require('../../assets/images/tower.png')} />
             </Link>
           </li>
           <li>
             <Link
               to={{
-                pathname: '/Chart',
-                state: { data: 'Solar Panel Production' }
-              }}>
-              <img src={require('../assets/images/solar-panel.png')} />
+                pathname: '/Solar',
+                state: { data: 'Solar Panel Production', type: 'Solar' }
+              }}
+              className={Grid_Power == 0 ? 'disabled-link' : ''}>
+              <img src={require('../../assets/images/solar-panel.png')} />
             </Link>
           </li>
           <li>
-            <img src={require('../assets/images/LPicon2.png')} />
+            <img src={require('../../assets/images/LPicon2.png')} />
           </li>
-          <li class='circle-container-animation'>
-            <div class={`arrow arrow1 ${getClass(Battery_Power)}`}>
-              <span></span>
-              <span></span>
-              <span></span>
+          <li className='circle-container-animation'>
+            <div className={`arrow arrow1 ${getClass(Battery_Power)}`}>
+              <SpanComponent />
             </div>
-            <div class={`arrow arrow2 ${getClass(Solar_Power)}`}>
-              <span></span>
-              <span></span>
-              <span></span>
+            <div className={`arrow arrow2 ${getClass(Solar_Power)}`}>
+              <SpanComponent />
             </div>
-            <div class={`arrow arrow3 ${getClass(Grid_Power)}`}>
-              <span></span>
-              <span></span>
-              <span></span>
+            <div
+              className={`arrow ${getDirectionClass(
+                Grid_Power,
+                'grid'
+              )} ${getClass(Grid_Power)}`}>
+              <SpanComponent />
             </div>
-            <div class={`arrow arrow4 ${getClass(Load_Power)}`}>
-              <span></span>
-              <span></span>
-              <span></span>
+            <div
+              className={`arrow ${getDirectionClass(
+                Load_Power,
+                'load'
+              )} ${getClass(Load_Power)}`}>
+              <SpanComponent />
             </div>
           </li>
-          <li class='circle-container-lbl'>
+          <li className='circle-container-lbl'>
             <label> {Load_Power}</label>
             <label> {Grid_Power}</label>
             <label> {Battery_Power}</label>
@@ -196,3 +201,32 @@ const getClass = data => {
     return 'classRed';
   }
 };
+
+const getDirectionClass = (data, name) => {
+  let power = parseInt(data);
+
+  if (name == 'grid') {
+    if (power < 0) {
+      return 'arrow3-reverse';
+    } else {
+      return 'arrow3';
+    }
+  }
+
+  if (name == 'load') {
+    if (power < 0) {
+      return 'arrow4-reverse';
+    } else {
+      return 'arrow4';
+    }
+  }
+};
+
+const SpanComponent = () => (
+  <React.Fragment>
+    {' '}
+    <span></span>
+    <span></span>
+    <span></span>
+  </React.Fragment>
+);

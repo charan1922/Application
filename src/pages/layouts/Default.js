@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, Row, Col } from 'shards-react';
 
-import MainNavbar from '../components/layout/Navbar/MainNavbar';
-import MainFooter from '../components/layout/Footer/Footer';
+import MainNavbar from '../../components/layout/Navbar/MainNavbar';
+import MainFooter from '../../components/layout/Footer/Footer';
 
 const DefaultLayout = ({ children, noNavbar, noFooter }) => (
   <Container fluid>

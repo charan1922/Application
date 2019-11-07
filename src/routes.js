@@ -1,52 +1,69 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
 
 // Layout Types
-import { DefaultLayout } from './layouts';
-// import { Layout } from './components/layout/Home';
+import { DefaultLayout } from './pages/layouts';
 
 // Route Views
-
-// import Home from './pages/Home';
 import Dashboard from './pages/Dashboard';
 import Chart from './pages/Chart';
-import TrialChart from './components/LinePlot';
+import LoginPage from './pages/UserPages/LoginPage';
+import withAuth from './wIthAuth';
+import RegistarionPage from './pages/UserPages/Registration';
 
+// const RestrictedRoute = ({component: Component, ...rest, authUser}) =>
+//     <Route
+//         {...rest}
+//         render={props =>
+//             authUser
+//                 ? <Component {...props} />
+//                 : <Redirect
+//                     to={{
+//                         pathname: '/login',
+//                         state: {from: props.location}
+//                     }}
+//                 />}
+//     />;
 export default [
   {
     path: '/',
     exact: true,
     layout: DefaultLayout,
-    component: () => <Redirect to='/Dashboard' /> //Need confirmation: Here Registration Page should be load
-  },
-  // {
-  //   path: '/Home',
-  //   layout: Layout,
-  //   component: Home
-  // },
-  // {
-  //   path: '/Login',
-  //   layout: DefaultLayout,
-  //   component: Login
-  // },
-  // {
-  //   path: '/Registration',
-  //   layout: DefaultLayout,
-  //   component: Registration
-  // },
-  {
-    path: '/Chart',
-    layout: DefaultLayout,
-    component: Chart
+    component: () => <Redirect to='/login' />
   },
   {
-    path: '/TrialChart',
+    path: '/login',
     layout: DefaultLayout,
-    component: TrialChart
+    component: LoginPage
+  },
+  {
+    path: '/Registration',
+    layout: DefaultLayout,
+    component: RegistarionPage
+  },
+  {
+    path: '/Solar',
+    layout: DefaultLayout,
+    component: withAuth(Chart)
+  },
+  {
+    path: '/Battey',
+    layout: DefaultLayout,
+    component: withAuth(Chart)
+  },
+  {
+    path: '/Grid',
+    layout: DefaultLayout,
+    component: withAuth(Chart)
+  },
+  {
+    path: '/Load',
+    layout: DefaultLayout,
+    component: withAuth(Chart)
   },
   {
     path: '/Dashboard',
     layout: DefaultLayout,
-    component: Dashboard
+    component: withAuth(Dashboard)
   }
 ];

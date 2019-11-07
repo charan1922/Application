@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Card, CardBody, Row, Col } from 'shards-react';
-import EnergyFlow from '../components/EnergyFlow';
-import Consumption from '../components/Consumption';
+import EnergyFlow from '../components/EnergyFlow/EnergyFlow';
+import Consumption from '../components/Consumption/Consumption';
 
 const Dashboard = () => (
   <Container fluid className='main-content-container py-4'>
