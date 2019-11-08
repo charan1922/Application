@@ -16,3 +16,9 @@ functions:
       - http:
           path: test
           method: get
+  inverterGet:
+    handler: src/InverterGet.InverterGet
+    events:
+      - http:
+          path: InverterGet
+          method: get

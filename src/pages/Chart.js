@@ -1,7 +1,6 @@
 import React from 'react';
 import { Container, Card, CardBody, Row, Col } from 'shards-react';
-import Details from '../components/HighchartOverview';
-import Consumption from '../components/Consumption';
+import Graph from '../components/Graph/HighchartOverview';
 
 const Chart = () => (
   <Container fluid className='main-content-container py-4'>
@@ -10,7 +9,7 @@ const Chart = () => (
       <Col lg='12' md='12' sm='12' className='mb-4'>
         <Card small className='h-100'>
           <CardBody className='pt-0'>
-            <Details />
+            <Graph />
           </CardBody>
         </Card>
       </Col>

@@ -25,8 +25,8 @@ class Consumption extends React.Component {
         full: 100
       }
     ];
-    //chart.radius = am4core.percent(100);
-    chart.innerRadius = am4core.percent(50);
+    //chart.radius = am4core.percent(100); // Outer circle size
+    chart.innerRadius = am4core.percent(50); //Inner circle size
 
     // Create axes
     var categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
@@ -78,7 +78,7 @@ class Consumption extends React.Component {
     let hoverState = series.columns.template.radarColumn.states.create('hover');
     hoverState.properties.cornerRadius = 0;
     hoverState.properties.fillOpacity = 1;
-
+    // color for values will take automatically
     series.columns.template.adapter.add('fill', function(fill, target) {
       return chart.colors.getIndex(target.dataItem.index);
     });
@@ -90,7 +90,7 @@ class Consumption extends React.Component {
     bulletValueLabel.text = "{valueY.total.formatNumber('$#.0')}";
 
     let label = bullet.createChild(am4core.Label);
-    label.text = '{valueY}%' + '\n' + '{categoryX}';
+    label.text = '{valueY}%' + '\n' + '{categoryX}'; //labels display in chart
     label.verticalCenter = 'middle';
     label.paddingLeft = -40;
     // label.fill = am4core.color('#ffffff');
