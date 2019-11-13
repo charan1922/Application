@@ -128,7 +128,7 @@ class EnergyFlow extends React.Component {
                 state: { data: 'Battey Production', type: 'battery' }
               }}
               className={Battery_Power == 0 ? 'disabled-link' : ''}>
-              <img src={require('../../assets/images/battery4.png')} />
+              <img src={getBatteryImage(this.state.SOC)} />
             </Link>
           </li>
           <li>
@@ -232,3 +232,18 @@ const SpanComponent = () => (
     <span></span>
   </React.Fragment>
 );
+
+
+const getBatteryImage = (SOC) => {
+  if (SOC === 0) {
+    return require('../../assets/images/battery1.png')
+  } else if (SOC === 30) {
+    return require('../../assets/images/battery2.png')
+  } else if (SOC === 50) {
+    return require('../../assets/images/battery3.png')
+  } else if (SOC === 100) {
+    return require('../../assets/images/battery4.png')
+  } else {
+    return require('../../assets/images/battery4.png')
+  }
+}
