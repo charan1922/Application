@@ -10,6 +10,7 @@ import Chart from './pages/Chart';
 import LoginPage from './pages/UserPages/LoginPage';
 import withAuth from './wIthAuth';
 import RegistrationPage from './pages/UserPages/Registration';
+import MultiSeriesChart from './pages/MultiSeriesChart';
 
 // const RestrictedRoute = ({component: Component, ...rest, authUser}) =>
 //     <Route
@@ -72,5 +73,10 @@ export default [
     path: '/Dashboard',
     layout: DefaultLayout,
     component: withAuth(Dashboard)
+  },
+  {
+    path: '/multiseries',
+    layout: DefaultLayout,
+    component: withAuth(MultiSeriesChart)
   }
 ];
