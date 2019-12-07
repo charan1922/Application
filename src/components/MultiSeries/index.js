@@ -226,7 +226,7 @@ const getData = (data, graphTitle) => {
     series: [
       {
         name: 'Random data1',
-        type: 'chart',
+        type: 'area',
         color: '#FF7F00',
         data: (function() {
           // generate an array of random data
@@ -243,7 +243,7 @@ const getData = (data, graphTitle) => {
       },
       {
         name: 'Random data2',
-        type: 'chart',
+        type: 'area',
         color: '#00FF7F',
         data: (function() {
           // generate an array of random data
@@ -259,7 +259,7 @@ const getData = (data, graphTitle) => {
       },
       {
         name: 'Random data3',
-        type: 'chart',
+        type: 'area',
         color: '#FF007F',
         data: (function() {
           // generate an array of random data
