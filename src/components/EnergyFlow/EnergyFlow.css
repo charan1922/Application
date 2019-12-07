@@ -85,7 +85,7 @@
 .arrow1 {
   transform: rotate(180deg) !important;
   top: 100px;
-  left: 32px;
+  left: 40px;
 }
 .arrow2 {
   transform: rotate(360deg) !important;
@@ -102,6 +102,18 @@
   left: 110px;
   top: 35px;
 }
+/* Negative value comes arrow flow reverse direction */
+.arrow3-reverse {
+  transform: rotate(90deg) !important;
+  left: -28px;
+  top: 45px;
+}
+.arrow1-reverse {
+  transform: rotate(360deg) !important;
+  top: 100px;
+  left: 42px;
+}
+
 /* .arrow span{
   display: block;
   width: 10px;
@@ -116,64 +128,54 @@
 /* Color of arrows change according to values */
 .classGreen span {
   display: block;
-  width: 10px;
-  height: 10px;
-  border-bottom: 5px solid #00897b;
-  border-right: 5px solid #00897b;
+  width: 5px;
+  height: 5px;
+  background-color: #00897b;
+  border-radius: 100%;
   transform: rotate(45deg);
-  margin: -10px;
+  margin: -4px;  
   animation: animate 2s infinite;
 }
 
 .classYellow span {
   display: block;
-  width: 10px;
-  height: 10px;
-  border-bottom: 5px solid #fbc02d;
-  border-right: 5px solid #fbc02d;
+  width: 5px;
+  height: 5px;
+  background-color: #fbc02d;
+  border-radius: 100%;
   transform: rotate(45deg);
-  margin: -10px;
+  margin: -4px;  
   animation: animate 2s infinite;
 }
 
 .classOrange span {
   display: block;
-  width: 10px;
-  height: 10px;
-  border-bottom: 5px solid #fb8c00;
-  border-right: 5px solid #fb8c00;
+  width: 5px;
+  height: 5px;
+  background-color: #fb8c00;
+  border-radius: 100%;
   transform: rotate(45deg);
-  margin: -10px;
+  margin: -4px;
   animation: animate 2s infinite;
 }
 .classRed span {
   display: block;
-  width: 10px;
-  height: 10px;
-  border-bottom: 5px solid #e64a19;
-  border-right: 5px solid #e64a19;
+  width: 5px;
+  height: 5px;
+  background-color: #e64a19;
+  border-radius: 100%;
   transform: rotate(45deg);
-  margin: -10px;
+  margin: -4px;
   animation: animate 2s infinite;
 }
 .classWhite span {
   display: block;
-  width: 1px;
-  height: 1px;
-  border-bottom: 5px solid #ffffff;
-  border-right: 5px solid #ffffff;
-  margin: -10px;
-}
-/* Negative value comes arrow flow reverse direction */
-.arrow3-reverse {
-  transform: rotate(90deg) !important;
-  left: -28px;
-  top: 45px;
-}
-.arrow1-reverse {
-  transform: rotate(360deg) !important;
-  top: 100px;
-  left: 35px;
+  width: 5px;
+  height: 5px;
+  background-color: #ffffff;
+  border-radius: 100%;
+  transform: rotate(45deg);
+  margin: -4px;
 }
 
 /* Zero value */
@@ -213,8 +215,10 @@
 
 
 .batteryDiv{
-  width:50px;
-  height:80px;
+  width: 45px;
+  height: 80px;
+  position: relative;
+  left: 20px;
 }
 
 .vertical {
@@ -226,6 +230,9 @@
 }
 .vertical {
   background-color: #E7EDED;
+  text-align: center;
+  color: black;
+  font-size: 12px;
 }
 
 .batteryNotch {

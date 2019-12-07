@@ -240,6 +240,7 @@ const getBatteryImage = (SOC=0) => {
     <div class="batteryDiv">
       <div class="batteryNotch"></div>
       <div class="vertical">
+        {`${SOC}%`}
         <div class="indicator" style={{height: `calc(${SOC}%)`}}></div>
       </div>
     </div>
