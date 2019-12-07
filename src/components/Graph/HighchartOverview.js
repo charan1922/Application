@@ -72,7 +72,10 @@ class Graph extends React.Component {
   render() {
     const { seriesData, graphTitle } = this.state;
     let stockOptions = getData(seriesData, graphTitle);
-    return <StockChart options={stockOptions} highcharts={Highcharts} />;
+    return(<div>
+      <Link to="Dashboard">Back</Link>
+      
+       <StockChart options={stockOptions} highcharts={Highcharts} /> </div>)
   }
 }
 
@@ -95,7 +98,7 @@ const getData = (data, graphTitle) => {
 
   let stockOptions = {
     chart: {
-      zoomType: 'x',
+      zoomType: 'xy',
     },
 
     time: {
@@ -170,7 +173,7 @@ const getData = (data, graphTitle) => {
               i;
   
             for (i = -3222222; i <= 0; i += 1) {
-              data.push([time + i * 10000, Math.round(Math.random() * 100)]);
+              data.push([time + i * 60000, Math.round(Math.random() * 100)]);
             }
             return data;
           })()
@@ -245,7 +248,7 @@ const getData = (data, graphTitle) => {
             i;
 
           for (i = -3222222; i <= 0; i += 1) {
-            data.push([time + i * 10000, Math.round(Math.random() * 100)]);
+            data.push([time + i * 60000, Math.round(Math.random() * 100)]);
           }
           return data;
         })(),
