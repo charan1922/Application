@@ -96,17 +96,6 @@ const getData = (data, graphTitle) => {
   let stockOptions = {
     chart: {
       zoomType: 'x',
-      events: {
-        load: function() {
-          // set up the updating of the chart each second
-          var series = this.series[0];
-          setInterval(function() {
-            var x = new Date().getTime(), // current time
-              y = Math.round(Math.random() * 100);
-            series.addPoint([x, y], true, true);
-          }, 10000);
-        }
-      }
     },
 
     time: {
@@ -114,11 +103,21 @@ const getData = (data, graphTitle) => {
     },
 
     rangeSelector: {
+      labelStyle: {
+        display: 'none'
+     },
+     buttonSpacing: 10,
+     buttonTheme: {
+        //  width: 30,
+        //  style: {
+        //      fontSize: 16
+        //  }
+     },
       buttons: [
         {
           type: 'hour',
           count: 1,
-          text: 'Minutes'
+          text: 'Min'
         },
         {
           type: 'day',
@@ -148,7 +147,35 @@ const getData = (data, graphTitle) => {
     title: {
       text: graphTitle
     },
-
+    
+    navigator: {
+      adaptToUpdatedData: false,
+      height: 0,
+      xAxis: {
+        labels: {
+          enabled: false
+        }
+      },
+      handles: {
+        backgroundColor: 'transparent',
+          borderColor: 'transparent'
+      },
+      outlineWidth: 0,
+      // enabled:false,
+      series: {
+                 data: (function() {
+            // generate an array of random data
+            var data = [],
+              time = new Date().getTime(),
+              i;
+  
+            for (i = -3222222; i <= 0; i += 1) {
+              data.push([time + i * 10000, Math.round(Math.random() * 100)]);
+            }
+            return data;
+          })()
+      }
+  },
     exporting: {
       enabled: false
     },
@@ -174,10 +201,43 @@ const getData = (data, graphTitle) => {
     labels: {
       rotation: 315
     },
-
+    
+    plotOptions: {
+      area: {
+          fillColor: {
+              linearGradient: {
+                  x1: 0,
+                  y1: 0,
+                  x2: 0,
+                  y2: 1
+              },
+              stops: [
+                  [0, Highcharts.getOptions().colors[0]],
+                  [1, Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0).get('rgba')]
+              ]
+          },
+          marker: {
+              radius: 2
+          },
+          lineWidth: 1,
+          states: {
+              hover: {
+                  lineWidth: 1
+              }
+          },
+          threshold: null
+      }
+  },
+//   series: [{
+//     data: data,
+//     dataGrouping: {
+//         enabled: false
+//     }
+// }]
     series: [
       {
         name: 'Random data',
+        type: 'area',
         data: (function() {
           // generate an array of random data
           var data = [],
@@ -188,7 +248,8 @@ const getData = (data, graphTitle) => {
             data.push([time + i * 10000, Math.round(Math.random() * 100)]);
           }
           return data;
-        })()
+        })(),
+        
       }
     ]
   };
