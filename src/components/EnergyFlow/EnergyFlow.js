@@ -61,7 +61,7 @@ class EnergyFlow extends React.Component {
         InverterID: 'INV0000123456',
         Load_Power: '820',
         Pmeter: Math.round(35 + Math.random() * (25 - 50)),
-        SOC: Math.round(55 + Math.random() * (35 - 90)),
+        SOC: Math.round( Math.random() * 100),
         Solar_Power: '0',
         SolarIpv1: Math.round(50 + Math.random() * (25 - 80)),
         SolarIpv2: Math.round(50 + Math.random() * (20 - 90)),
@@ -128,7 +128,7 @@ class EnergyFlow extends React.Component {
                 state: { data: 'Battey Production', type: 'battery' }
               }}
               className={Battery_Power == 0 ? 'disabled-link' : ''}>
-              <img src={getBatteryImage(this.state.SOC)} />
+              {getBatteryImage(this.state.SOC)}
             </Link>
           </li>
           <li>
@@ -234,16 +234,14 @@ const SpanComponent = () => (
 );
 
 
-const getBatteryImage = (SOC) => {
-  if (SOC === 0) {
-    return require('../../assets/images/battery1.png')
-  } else if (SOC === 30) {
-    return require('../../assets/images/battery2.png')
-  } else if (SOC === 50) {
-    return require('../../assets/images/battery3.png')
-  } else if (SOC === 100) {
-    return require('../../assets/images/battery4.png')
-  } else {
-    return require('../../assets/images/battery4.png')
-  }
+
+const getBatteryImage = (SOC=0) => {
+  return (
+    <div class="batteryDiv">
+      <div class="batteryNotch"></div>
+      <div class="vertical">
+        <div class="indicator" style={{height: `calc(${SOC}%)`}}></div>
+      </div>
+    </div>
+  )
 }
